@@ -1,4 +1,4 @@
-/** \file PPII_Ex3_21.02.2022.cpp
+/** \file PPII_Ex3_17.02.2022.cpp
 * \brief This program compaires two list of the arrays.
 * \details This program reads two lists of positive integers from the user (-1 to finish) and gives an appropriate comment if the two lists are identical.
 * \author Ivan Kosiakov
