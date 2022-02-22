@@ -1,4 +1,4 @@
-/** \file Exercise_1.cpp
+/** \file PPII_Ex1_17.02.2022.cpp
 * \brief This program copies numbers into an array of another.
 * \details This program copies the numbers into another array until the user enters -1, and then outputs that array.
 * \author Ivan Kosiakov
