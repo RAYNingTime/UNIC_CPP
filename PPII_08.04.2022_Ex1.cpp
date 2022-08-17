@@ -45,7 +45,6 @@ int main()
 
 	return 0;
 }
-
 bool palindrome(char number[50], int beginning, int end) {
 	if (number[beginning] != number[end])
 		return false;
