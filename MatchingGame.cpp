@@ -6,7 +6,6 @@
 using namespace std;
 
 void clearScreen();
-
 int main()
 {
 	int const MAX_BOARD = 8, MAX_LINE = 3;
