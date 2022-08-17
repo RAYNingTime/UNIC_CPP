@@ -17,7 +17,6 @@
 #include <iostream>
 
 using namespace std;
-
 int menu();
 
 class student {
