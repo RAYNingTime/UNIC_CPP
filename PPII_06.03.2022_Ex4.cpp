@@ -12,7 +12,6 @@
 
 		c) Write a function called average that takes as parameters a onedimensional
 	array and the array size as integer and returns the average.
-
 	Made by Ivan Kosiakov on 06/03/2022
 */
 
