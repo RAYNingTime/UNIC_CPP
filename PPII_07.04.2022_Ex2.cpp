@@ -4,9 +4,9 @@
 	numerator and denominator to some given values.
 
 		b) Add the following functions to the fraction object:
-	 divide – returns the quotient of two fractions
-	 mult – returns the product
-	 dif – returns the difference
+	 divide â€“ returns the quotient of two fractions
+	 mult â€“ returns the product
+	 dif â€“ returns the difference
 
 		c) Write a public function reduce that reduces the fraction to its simplest form. E.g.
 	6/8 should be reduced to 3/4. (To reduce a fraction you divide both the numerator
@@ -20,7 +20,6 @@
 
 	Made by Ivan Kosiakov on 12/04/2022
 */
-
 #include <iostream>
 using namespace std;
 
