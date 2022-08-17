@@ -1,11 +1,10 @@
 /*
 		Write a void function that uses pointers to add a single character at the end of an existing
 	C-string. The string and the character should be taken as parameters. For example if str
-	contains the C-string Hello World the function call addChar(str, ‘!’) should
+	contains the C-string Hello World the function call addChar(str, â€˜!â€™) should
 	change the string str to Hello World!
 
 	Repeat exercise 7 on Exercise Sheet 8 with functions that return a pointer to char.
-
 		Made by Ivan Kosiakov on 15/03/2022
 */
 #include <iostream>
