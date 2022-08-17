@@ -1,6 +1,6 @@
 /*
 		a) Define a structure data type suitable for holding the information for stock item,
-	such as: stock’s name, price of the stock and the date of purchase.
+	such as: stockâ€™s name, price of the stock and the date of purchase.
 
 		b) Declare a stock structure variable and initialize it to the following data:
 
@@ -15,7 +15,6 @@
 
 	Made by Ivan Kosiakov on 10/03/2022
 */
-
 #include <iostream>
 
 using namespace std;
