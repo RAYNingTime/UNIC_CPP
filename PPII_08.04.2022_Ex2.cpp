@@ -7,7 +7,6 @@
 #include <iostream>
 
 using namespace std;
-
 void printRev(int);
 
 int main()
