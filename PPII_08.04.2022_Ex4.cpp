@@ -5,7 +5,6 @@
 	Made by Ivan Kosiakov on 08/04/2022
 */
 #include <iostream>
-
 using namespace std;
 
 int SumDigits(int);
