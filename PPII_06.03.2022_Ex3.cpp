@@ -4,7 +4,6 @@
 
 		Made by Ivan Kosiakov on 06/03/2022
 */
-
 #include <iostream>
 using namespace std;
 int main()
