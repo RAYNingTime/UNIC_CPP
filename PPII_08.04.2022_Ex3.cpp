@@ -7,7 +7,6 @@
 #include <iostream>
 
 using namespace std;
-
 void printInt(int);
 
 int main()
