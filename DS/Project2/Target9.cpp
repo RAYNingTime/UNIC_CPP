@@ -12,7 +12,6 @@ const int EXIT_OPTION = 4, EXIT_GAME_OPTION = 4;
 int main()
 {
 	Grid userGrid;
-
 	const int MAX_DIFFICULTY = 9, MIN_DIFFICULTY = 1;
 	int userOption, gameMenuOption, userRow, userColumn;
 
@@ -59,6 +58,7 @@ int main()
 							cout << "Wrong input, try again!" << endl;
 					} while (userColumn < 0 || userColumn >= MAX_COLUMN);
 
+					userGrid.decreaseUndoCounter();
 					userGrid.increaseGrid(userRow, userColumn);
 
 					// Checking if user won
