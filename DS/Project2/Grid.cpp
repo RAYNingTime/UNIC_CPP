@@ -6,6 +6,7 @@
 Grid::Grid()
 {
 	undoCounter = 0;
+	redoCounter = 0;
 
 	for (int i = 0; i < MAX_ROW; i++) {
 		for (int j = 0; j < MAX_COLUMN; j++) {
@@ -82,10 +83,11 @@ bool Grid::end() const {
 }
 
 void Grid::redo() {
-	if (undoCounter == 0) 
+	if (undoCounter == 0 || redoCounter == 0) 
 		std::cout << std::endl << "You did not undo any of your turns! You should make an undo before redo." << std::endl;
 	else {
 		Position redoPosition = undoArray[--undoCounter];
+		--redoCounter;
 
 		if (turns.push(redoPosition) == success) {
 			increaseGrid(redoPosition.row, redoPosition.column);
@@ -99,9 +101,12 @@ void Grid::undo() {
 		Position undoPosition = Position(tempRow, tempColumn);
 
 		if (turns.top(undoPosition) == success) {
+
+			// In accordance with the provided application from the teacher, the cancellation of moves is limited (5).
 			if (undoCounter < MAX_UNDO_ARRAY) {
 				undoArray[undoCounter] = undoPosition;
 				undoCounter++;
+				redoCounter++;
 		
 				decreaseGrid(undoPosition.row, undoPosition.column);
 				turns.pop();
@@ -113,5 +118,11 @@ void Grid::undo() {
 }
 
 void Grid::decreaseUndoCounter() {
-	undoCounter = 0;
+	if (undoCounter != 0) {
+		undoCounter--;
+	}
+}
+
+void Grid::resetRedoCounter() {
+	redoCounter = 0;
 }
