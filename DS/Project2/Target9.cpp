@@ -58,7 +58,12 @@ int main()
 							cout << "Wrong input, try again!" << endl;
 					} while (userColumn < 0 || userColumn >= MAX_COLUMN);
 
+					// After a new turn user cannot redo any of his previous undo's
+					userGrid.resetRedoCounter();
+
+					// If user already undid some amount of turns after a new turn he will be allowed to make an extra undo (max amount of undo is 5)
 					userGrid.decreaseUndoCounter();
+
 					userGrid.increaseGrid(userRow, userColumn);
 
 					// Checking if user won
