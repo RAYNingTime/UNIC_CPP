@@ -5,6 +5,8 @@
 
 Grid::Grid()
 {
+	undoCounter = 0;
+
 	for (int i = 0; i < MAX_ROW; i++) {
 		for (int j = 0; j < MAX_COLUMN; j++) {
 			grid[i][j] = MAX_GRID_NUMBER;
@@ -15,6 +17,7 @@ Grid::Grid()
 void Grid::newGame(int amountTurns) {
 	srand(time(NULL));
 	int randomRow, randomColumn;
+	undoCounter = 0;
 
 	for (int i = 0; i < amountTurns; i++) {
 		randomRow = rand() % MAX_ROW;
@@ -79,16 +82,36 @@ bool Grid::end() const {
 }
 
 void Grid::redo() {
-	while (!turns.empty())
-		undo();
+	if (undoCounter == 0) 
+		std::cout << std::endl << "You did not undo any of your turns! You should make an undo before redo." << std::endl;
+	else {
+		Position redoPosition = undoArray[--undoCounter];
+
+		if (turns.push(redoPosition) == success) {
+			increaseGrid(redoPosition.row, redoPosition.column);
+		}
+	}
 }
 
 void Grid::undo() {
-	int tempRow = 0, tempColumn = 0;
-	Position undoPosition = Position(tempRow, tempColumn);
+	if (!turns.empty()) {
+		int tempRow = 0, tempColumn = 0;
+		Position undoPosition = Position(tempRow, tempColumn);
 
-	if (turns.top(undoPosition) == success) {
-		decreaseGrid(undoPosition.row, undoPosition.column);
-		turns.pop();
+		if (turns.top(undoPosition) == success) {
+			if (undoCounter < MAX_UNDO_ARRAY) {
+				undoArray[undoCounter] = undoPosition;
+				undoCounter++;
+		
+				decreaseGrid(undoPosition.row, undoPosition.column);
+				turns.pop();
+			}
+			else std::cout << std::endl << "You can not undo more than a " << MAX_UNDO_ARRAY << " turns!" << std::endl;
+		}
 	}
+	else std::cout << std::endl << "You did not make any of turn! You should make a turn before undo." << std::endl;
+}
+
+void Grid::decreaseUndoCounter() {
+	undoCounter = 0;
 }
