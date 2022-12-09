@@ -1,6 +1,6 @@
 #pragma once
 #include "Stack.h"
-const int MAX_ROW = 3, MAX_COLUMN = 3, MAX_GRID_NUMBER = 9;
+const int MAX_ROW = 3, MAX_COLUMN = 3, MAX_GRID_NUMBER = 9, MAX_UNDO_ARRAY = 5;
 
 class Grid {
 public:
@@ -47,9 +47,17 @@ public:
 	* @brief This function backups a grid to a previous version of it.
 	*/
 	void undo();
+
+	/* Decrease undo counter function.
+	* @brief This function resets counter of the undo to a 0.
+	*/
+	void decreaseUndoCounter();
 private:
 	Stack turns;
 	int grid[MAX_ROW][MAX_COLUMN];
+
+	Position undoArray[MAX_UNDO_ARRAY]; // Array that is going to save up to 5 undo
+	int undoCounter;
 
 	/* Decrease Grid function.
 	* @brief This function decreases row and column in selected position by one.
