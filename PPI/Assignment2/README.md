@@ -3,7 +3,7 @@
  Grade	-	100.00 / 100.0 
 
 ## 1. Assignment Objectives
-• Gain practical experience with the C++ selection statements.
+- Gain practical experience with the C++ selection statements.
 
 ## 2. Assignment Description
 Your task is to develop programs for the assigned exercises. Your programs should
