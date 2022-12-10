@@ -28,6 +28,8 @@ Enter character: x
 x is a consonant
 ```
 
+___
+
 2. Write a program that prompts the user to enter the width w and height h of a
 rectangle, along with a point (x,y). Your program is going to check if the point is
 within the rectangle centered at (0,0) with width w and height h. Hint: a point is in
@@ -52,6 +54,8 @@ Enter the two coordinates of the point: 6 2
 Point (6,2) is not the rectangle.
 ```
 
+___
+
 3. Write a program that prompts the user to enter three numbers and displays them in
 an ascending order and also in a descending order. Here is a sample run:
 
@@ -61,6 +65,8 @@ Enter 3 numbers: 4 -2 3
 Ascending order: -2 3 4
 Descending order: 4 3 -2
 ```
+
+___
 
 4. Write a program that prompts the user to enter an integer and determines whether or
 not it is divisible by 5 and 6, whether it is divisible by 5 or 6, and whether it is
@@ -73,6 +79,8 @@ Is 10 divisible by 5 and 6? No
 Is 10 divisible by 5 or 6? Yes
 Is 10 divisible by 5 or 6, but not both? Yes
 ```
+
+___
 
 5. Rewrite the Body Mass Index problem from Programming Assignment 1 so that it
 will also display the interpretation of the calculated BMI as follows:
