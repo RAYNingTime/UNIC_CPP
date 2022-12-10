@@ -28,6 +28,8 @@ Enter height in inches: 50
 BMI is 26.8573
 ```
 
+___
+
 2. Write a program that prompts the user to enter two points (x1 ,y1 ) and (x 2 ,y2 ) and
 display their distance. The formula for computing the distance is shown below:
 
@@ -42,6 +44,8 @@ Enter x2 and y2: 4 5
 The distance between the points (1.5,-3.4) and (4,5) is 8.7641
 ```
 
+___
+
 3. Write a program that prompts the user to enter a number n and displays n¹ , n² , n³ , n⁴ ,
 n⁵ . Here is a sample run:
 
@@ -55,6 +59,8 @@ Enter a number: 4
 4 raised in the power of 5: 1024
 ```
 
+___
+
 4. Write a program that prompts the user for a character and displays its ASCII code
 as well as the ASCII codes for the next 3 characters. Here is a sample run:
 
@@ -66,6 +72,8 @@ ASCII code for B is 66
 ASCII code for C is 67
 ASCII code for D is 68
 ```
+
+___
 
 5. Write a program that prompts the user to enter an uppercase letter and converts it to
 a lowercase letter. Hint: In the ASCII table the uppercase letters appear before the
