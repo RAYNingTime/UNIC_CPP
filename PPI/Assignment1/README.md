@@ -1,3 +1,7 @@
+# COMP111 – Programming Principles I
+ Programming Assignment 1
+ Grade	-	100.00 / 100.0 
+
 ## 1. Assignment Objectives
 - Gain practical experience with elementary C++ programming features.
 
