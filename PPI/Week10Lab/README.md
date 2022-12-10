@@ -13,9 +13,9 @@ with a simple "driver" program, which should be able to reproduce the following 
 output:
 
 ```
-This program prints a 'pyramid' shape of
-a specified height on the screen.
-how high would you like the pyramid?: 6
+This program prints a 'pyramid' shape of a specified height on the screen.
+How high would you like the pyramid?: 6
+
      **
     ****
    ******
