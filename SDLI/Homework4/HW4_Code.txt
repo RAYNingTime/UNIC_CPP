@@ -1,0 +1,61 @@
+//
+// In this assignment, you must follow the Software Development Cycle (phases 2-5) to design and
+// develop a program which calculates the monthly bill for a user subscribed to a fictional movie
+// streaming service called MovieFlix based on the number of movies the user has seen. (Essentially
+//	document and describe your plan for the exercise)
+//
+// Created by Ivan Kosiakov on 18/11/2021
+//
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	const double MONTHLY_SUB = 9.99, FIFTEEN_MVS = 1.5, TWENTY_MVS = 3.0, FORTYFIVE_MVS = 1.0;
+	const int FIRST_LIM = 10, SECOND_LIM = 25, THIRD_LIMIT = 45;
+	int amountOfMovies;
+	double bill;
+
+	//Checking for the negative value
+	do {
+		cout << "Enter the amount of movies, that you watched: ";
+		cin >> amountOfMovies;
+
+		if (amountOfMovies < 0) {
+			cout << "You entered negative value!" << endl
+				<< "Try again!" << endl;
+		}
+	} while (amountOfMovies < 0);
+
+	//Checking if amount of movies is less then 10
+	if (amountOfMovies <= FIRST_LIM)
+		bill = MONTHLY_SUB;
+
+	//Checking if amount of movies is less then 25
+	else if (amountOfMovies <= SECOND_LIM) {
+		bill = MONTHLY_SUB + (amountOfMovies - 10.0) * FIFTEEN_MVS;
+	}
+
+	//Checking if amount of movies is less then 45
+	else if (amountOfMovies <= THIRD_LIMIT) {
+		bill = MONTHLY_SUB + (amountOfMovies - 25.0) * TWENTY_MVS + 15 * FIFTEEN_MVS;
+	}
+
+	//Checking if amount of movies is more then 45
+	else {
+		bill = MONTHLY_SUB + (amountOfMovies - 45.0) + 15 * FIFTEEN_MVS + 20 * TWENTY_MVS;
+	}
+
+	//Showing "Bill from MovieFlix" to user
+	cout << endl << "\t/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\" << endl
+		<< "\t   Bill from 'MovieFlix'" << endl << endl
+		<< "\t Subscribe \t" << MONTHLY_SUB << " euro" << endl
+		<< "\t Movies fee \t" << (bill - MONTHLY_SUB) << " euro" << endl
+		<< "\t-----------------------------" << endl
+		<< "\t Amount \t" << bill << " euro" << endl
+		<< "\t/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\" << endl;
+
+	return 0;
+}
