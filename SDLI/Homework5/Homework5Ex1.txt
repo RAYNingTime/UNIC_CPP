@@ -1,0 +1,83 @@
+//
+//	In this assignment you will write a program for the popular 7/11 dice game. This game is also
+//  known as “crabs”.In this game a user rolls two dice.
+//		• If the user gets a 7 or 11->the user wins!
+//		• If the user get a 2, 3 or 12->the user loses :(
+//	In the case where the user gets a 4, 5, 6, 8, 9, 10 this result becomes the new “goal” and the user
+//  rolls the dice again :
+//		• If the user meets the goal->the user wins!
+//		• Otherwise->the user loses :(
+//
+//Created by Ivan Kosiakov on 02 / 12 / 2021
+
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+void invalidValueCheck(char);
+
+int main()
+{
+	const int firstLose = 2, secondLose = 3, thirdLose = 12, firstWin = 7, secondWin = 11;
+	char roll;
+	int firstRand, secondRand, sumOfRand, newGoal;
+
+	srand(time(NULL));
+
+	cout << "Let's play crabs!" << endl
+		<< "Roll the dice by pressing 'y' : ";
+	cin >> roll;
+
+	//Checking for invalid value for 'roll'
+	invalidValueCheck(roll);
+
+	//Random two numbers  from 1 to 6
+	firstRand = rand() % 6 + 1;
+	secondRand = rand() % 6 + 1;
+	sumOfRand = firstRand + secondRand;
+
+	cout << endl << "You rolled: " << firstRand << " + " << secondRand << " = " << sumOfRand << endl;
+
+	//Checking for Lose value
+	if (sumOfRand == firstLose || sumOfRand == secondLose || sumOfRand == thirdLose)
+		cout << "You Lose :(";
+
+	//Checking for Win value
+	else if (sumOfRand == firstWin || sumOfRand == secondWin)
+		cout << "You Win!";
+
+	//If number >= 4 or number <= 10
+	else {
+		cout << "Your goal is: " << sumOfRand << endl
+			<< "Roll the dice by pressing 'y' : ";
+		cin >> roll;
+
+		invalidValueCheck(roll);
+
+                //Random two numbers  from 1 to 6
+		firstRand = rand() % 6 + 1;
+		secondRand = rand() % 6 + 1;
+		newGoal = firstRand + secondRand;
+
+		cout << "You rolled: " << firstRand << " + " << secondRand << " = " << newGoal << endl;
+
+		if (sumOfRand == newGoal)
+			cout << "You Win!";
+		else cout << "You Lose :(";
+	}
+
+	return 0;
+}
+
+//Function that checks for invalid value
+void invalidValueCheck(char answer) {
+	do {
+		if (answer != 'y') {
+			cout << "You entered an invalid character! " << endl
+				<< "Try again!" << endl
+				<< "Roll the dice by pressing 'y' : ";
+			cin >> answer;
+		}
+	} while (answer != 'y');
+}

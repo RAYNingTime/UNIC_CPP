@@ -1,0 +1,75 @@
+//
+//	Write a program that randomly computes student grades for University Professors who are bored
+//  and do not want to actually grade their student examsand homework.
+//
+//Created by Ivan Kosiakov on 02 / 12 / 2021
+
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+	const int MIN = 60, RATE = 41, PER_ASSIGN = 3, A_GRADE = 90, B_GRADE = 80, C_GRADE = 70, D_GRADE = 60, OUTOFRANGE = 100;
+	char answ;
+	int grade, assignmentGrade;
+
+	srand(time(NULL));
+
+	cout << "Did the student attend more than 20% of the class lectures? [y/n] ";
+	cin >> answ;
+
+	//Checking the answer from user
+	if (answ == 'y') {
+		//Random grade from 60 to 100
+		grade = rand() % RATE + MIN;
+
+		//Checking for invalid value
+		do {
+			cout << "How many assignments did he do out of 5? ";
+			cin >> assignmentGrade;
+
+			if (assignmentGrade < 0 || assignmentGrade > 5)
+				cout << "You entered an invalid value!" << endl
+				<< "Try again!" << endl;
+		} while (assignmentGrade < 0 || assignmentGrade > 5);
+
+		//Additional grades from assignments
+		grade += assignmentGrade * PER_ASSIGN;
+
+		//Checking if grade > 100, then fix it
+		if (grade > OUTOFRANGE)
+			grade = OUTOFRANGE;
+
+		//Giving grade for the user
+		cout << "Grade of this student is ";
+		if (grade >= A_GRADE) {
+			cout << "A and he has " << grade << " points!";
+		}
+		else if (grade >= B_GRADE) {
+			cout << "B and he has " << grade << " points!";
+		}
+		else if (grade >= C_GRADE) {
+			cout << "C and he has " << grade << " points!";
+		}
+		else if (grade >= D_GRADE) {
+			cout << "D and he has " << grade << " points!";
+		}
+
+		//Checking for invalid value
+		else
+			cout << "You entered an invalid value!";
+	}
+
+	//If user enteres "No"
+	else if (answ == 'n') {
+		cout << "Grade of this student is F!";
+	}
+
+	//Checking for invalid value
+	else
+		cout << "You entered an invalid value!";
+
+	return 0;
+}
