@@ -1,0 +1,146 @@
+// Write a program that prompts the user to enter a word which may have the length of 5
+// or 6 characters.The program afterwards :
+//
+//    a. reverses the word(e.g., heLlo becomes olLeh),
+//    b. checks if the word is a palindrome by not distinguishing between lower - caseand
+//       upper - case letters(e.g., AnNa is a palindrome word),
+//    c. writes the word in a file named palindrome_word_checker.txt by preserving
+//       the contents of the file.
+//
+// Note: you cannot use the cctype library or loops
+//
+//Created by Ivan Kosiakov on 09 / 12 / 2021
+
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
+bool checker(char, char);
+
+int main()
+{
+	const int MAX = 6, MIN = 5;
+	bool firstStep, secondStep, thirdStep, bonk = false;
+	char firstCheck, secondCheck;
+	string answer;
+
+	cout << "Enter a word with length 5-6 characters: ";
+	cin >> answer;
+
+	//Checking for the correct number of digits
+	if (answer.length() > MAX || answer.length() < MIN) {
+		cout << "You entered wrong amount of digits!";
+	}
+	else {
+		// Checking for the absence of a file by trying to read it
+		ifstream file;
+		file.open("palindrome_word_checker.txt");
+		if (file.fail())
+			bonk = true;
+		file.close();
+
+		// Open/Create the file
+		ofstream output;
+		output.open("palindrome_word_checker.txt", ofstream::app);
+		if (bonk == true) {
+			output << "Word\t Palindrome" << endl;
+		}
+
+		//Checking the length of a 5-digit word and comparing each of the characters with the opposite one from the end
+		if (answer.length() == MIN) {
+			int min = 0, max = 4;
+
+			firstCheck = answer.at(min);
+			secondCheck = answer.at(max);
+
+			firstStep = checker(firstCheck, secondCheck);
+
+			firstCheck = answer.at(++min);
+			secondCheck = answer.at(--max);
+
+			secondStep = checker(firstCheck, secondCheck);
+
+			if (firstStep == true && secondStep == true) {
+				output << answer << "\t yes" << endl;
+
+				cout << answer << " is a palindrome word";
+			}
+			else {
+				output << answer << "\t no" << endl;
+				cout << answer << " is NOT a palindrome word";
+			}
+		}
+
+		//Checking the length of a 6-digit word and comparing each of the characters with the opposite one from the end
+		else {
+			int min = 0, max = 5;
+
+			firstCheck = answer.at(min);
+			secondCheck = answer.at(max);
+
+			firstStep = checker(firstCheck, secondCheck);
+
+			firstCheck = answer.at(++min);
+			secondCheck = answer.at(--max);
+
+			secondStep = checker(firstCheck, secondCheck);
+
+			firstCheck = answer.at(++min);
+			secondCheck = answer.at(--max);
+
+			thirdStep = checker(firstCheck, secondCheck);
+
+			if (firstStep == true && secondStep == true && thirdStep == true) {
+				output << answer << "\t yes" << endl;
+
+				cout << answer << " is a palindrome word";
+			}
+			else {
+				output << answer << "\t no" << endl;
+
+				cout << answer << " is NOT a palindrome word";
+			}
+		}
+	}
+
+	return 0;
+}
+
+//A function that checks if a character matches
+bool checker(char firstCheck, char secondCheck) {
+	bool check, letterFirst = false, letterSecond = false;
+
+	if (firstCheck >= 'A' && firstCheck <= 'Z')
+		letterFirst = true;
+	else
+		if (firstCheck >= 'a' && firstCheck <= 'z') {
+			firstCheck += ('A' - 'a');
+			letterFirst = true;
+		}
+	//Checking for an invalid symbol
+		else {
+			letterFirst = false;
+		}
+
+	if (secondCheck >= 'A' && secondCheck <= 'Z')
+		letterSecond = true;
+	else
+		if (secondCheck > 'a' && secondCheck < 'z') {
+			secondCheck += ('A' - 'a');
+			letterSecond = true;
+		}
+
+	//Checking for an invalid symbol
+		else {
+			letterSecond = false;
+		}
+
+	if ((firstCheck == secondCheck) && (letterFirst == true && letterSecond == true))
+		check = true;
+	else
+		check = false;
+
+	return check;
+}

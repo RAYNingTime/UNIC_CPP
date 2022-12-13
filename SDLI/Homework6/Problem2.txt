@@ -1,0 +1,71 @@
+// Write a program for a company’s payroll application which calculates the weekly salary
+//	and deductions of an employee.The program must read the following informationand
+//	then prints the payroll statement for the employee in a file named
+//	<employeeName>_w<weekNo>.txt:
+//
+//		a.Week No(e.g., 23)
+//		b.Employee’s name(e.g., Smith)
+//		c.Number of hours worked in a week(e.g., 10)
+//		d.Hourly pay rate(e.g., 9.75)
+//		e.Federal tax withholding rate(e.g., 20 %)
+//		f.State tax withholding rate(e.g., 9 %)
+//
+//Created by Ivan Kosiakov on 09 / 12 / 2021
+
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+	const double PROCENT = 0.01;
+	double hourlyPay, grossPay, fedWith, stateWith, totalDeduct, netPay, hoursInWeek, fedTax, stateTax;
+	string employeeName, week;
+
+	cout << "Payroll Application" << endl
+		<< "Enter week no.: ";
+	cin >> week;
+
+	cout << "Enter employee's name: ";
+	cin >> employeeName;
+
+	cout << "Enter number of hours worked in a week: ";
+	cin >> hoursInWeek;
+
+	cout << "Enter hourly pay rate: ";
+	cin >> hourlyPay;
+
+	cout << "Enter federal tax withholding rate (%): ";
+	cin >> fedTax;
+
+	cout << "Enter state tax withholding rate (%): ";
+	cin >> stateTax;
+
+	grossPay = hourlyPay * hoursInWeek;
+
+	//Counting withholding by multiplication procent and gross pay
+	fedWith = (fedTax * PROCENT) * grossPay;
+	stateWith = (stateTax * PROCENT) * grossPay;
+
+	totalDeduct = fedWith + stateWith;
+
+	netPay = grossPay - totalDeduct;
+
+	ofstream output;
+	//For creating a file with a variabels in name add "+" between parts of name
+	output.open(employeeName + "_w" + week + ".txt");
+	output << "Employee Name: " << employeeName << endl
+		<< "Hours Worked: " << hoursInWeek << endl
+		<< "Pay Rate: $" << setprecision(3) << hourlyPay << endl
+		<< "Gross Pay: $" << setprecision(3) << grossPay << endl
+		<< "Deductions: " << endl
+		<< "  Federal Withholding (" << fedTax << "%): $" << setprecision(3) << fedWith << endl
+		<< "  State Withholding (" << stateTax << "%): $" << setprecision(3) << stateWith << endl
+		<< "  Total Deduction: $" << setprecision(3) << totalDeduct << endl
+		<< "Net Pay: $" << setprecision(3) << netPay;
+
+	return 0;
+}
