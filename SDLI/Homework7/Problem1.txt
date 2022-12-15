@@ -1,0 +1,155 @@
+//		Write a program that prompts the user to enter a password and then the program
+//	validates the strength of the password based on the following rules :
+//
+//	a.The password must be between 8 and 32 characters.
+//	b.The password must have at least one upper - case letter.
+//	c.The password must have at least one digit(0 - 9).
+//	d.The password must have at least one of the following special characters : $, *, ^,
+//	&, #, _, ? .
+//
+//	In case the password does not follow the rules, the program must keep prompting the
+//	user to enter a valid password.
+//
+//	Note: you cannot use the cctype library
+//
+// Made by Ivan Kosiakov on 16/12/2021
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+//This function checks the number of characters in the password.
+bool amountOfChar(string);
+
+//This function checks if the password contains an uppercase letter.
+bool upperChar(string);
+
+//This function checks if the password contains a digit.
+bool digitInPass(string);
+
+//This function checks if it contains a special character.
+bool specialChar(string);
+
+//This function checks how strong the password is.
+void lvlOfStrenght(int);
+
+int main()
+{
+	string password;
+	int lvlOfPower = 0;
+
+	cout << "Enter the password ";
+	cin >> password;
+
+	cout << "The password must be between 8 and 32 characters: ";
+	if (amountOfChar(password) == true) {
+		cout << "+" << endl;
+		lvlOfPower++;
+	}
+	else cout << "-" << endl;
+
+	cout << "The password must have at least one upper-case letter: ";
+	if (upperChar(password) == true) {
+		cout << "+" << endl;
+		lvlOfPower++;
+	}
+	else	cout << "-" << endl;
+
+	cout << "The password must have at least one digit (0-9): ";
+	if (digitInPass(password) == true) {
+		cout << "+" << endl;
+		lvlOfPower++;
+	}
+	else	cout << "-" << endl;
+
+	cout << "The password must have at least one of the following special characters: $, *, ^, &, #, _, ?: ";
+	if (specialChar(password) == true) {
+		cout << "+" << endl;
+		lvlOfPower++;
+	}
+	else cout << "-" << endl;
+
+	lvlOfStrenght(lvlOfPower);
+}
+
+bool amountOfChar(string password) {
+	const int MAX = 32, MIN = 8;
+	bool rightAmount = false;
+
+	if (password.length() >= MIN && password.length() <= MAX) {
+		rightAmount = true;
+	}
+
+	return rightAmount;
+}
+
+bool upperChar(string password) {
+	bool upCase = false;
+
+	for (int i = 0; i < password.length(); i++) {
+		if ((password.at(i) >= 'A') && (password.at(i) <= 'Z')) {
+			upCase = true;
+		}
+	}
+
+	return upCase;
+}
+
+bool digitInPass(string password) {
+	bool digits = false;
+
+	for (int i = 0; i < password.length(); i++) {
+		if ((password.at(i) >= '0') && (password.at(i) <= '9')) {
+			digits = true;
+		}
+	}
+
+	return digits;
+}
+
+bool specialChar(string password) {
+	bool specialSymb = false;
+	string specialSymbol = "$*^&#_?";
+
+	//This loop compares each of the characters in the password with a list of special symbols.
+	for (int i = 0; i < password.length(); i++) {
+		for (int j = 0; j < specialSymbol.length(); j++) {
+			if (password.at(i) == specialSymbol.at(j)) {
+				specialSymb = true;
+				break;
+			}
+		}
+
+		if (specialSymb == true)
+			break;
+	}
+
+	return specialSymb;
+}
+
+void lvlOfStrenght(int lvl) {
+	cout << endl << "Your password is ";
+
+	switch (lvl)
+	{
+	case 4:
+		cout << "very strong!";
+		break;
+
+	case 3:
+		cout << "strong!";
+		break;
+
+	case 2:
+		cout << "medium!";
+		break;
+
+	case 1:
+		cout << "weak!";
+		break;
+
+	case 0:
+		cout << "very weak!";
+		break;
+	}
+}

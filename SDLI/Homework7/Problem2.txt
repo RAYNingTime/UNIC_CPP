@@ -1,0 +1,97 @@
+//		Write a program that generates random passwords based on the following rules :
+//
+//	a.The password length is 8 characters.
+//	b.The password must contain one upper - case letter.
+//	c.The password must contain one digit(0 - 9).
+//	d.The password must have one of the following special characters : $, *, ^, &, #, _, ? .
+//	e.The upper - case letter, digitand special character must not always be placed in the same place in the password.
+//
+//	Note: you cannot use the cctype library.
+//
+// Made by Ivan Kosiakov on 16/12/2021
+
+#include <iostream>
+#include <string>
+#include <random>
+#include <ctime>
+
+using namespace std;
+
+//This function adds a random uppercase letter to the password.
+void upperCase(string&, int&);
+
+//This function adds a random digit to the password.
+void digitIn(string&, int, int&);
+
+//This function adds a random special character to the password.
+void specialSymbol(string&, int, int);
+
+void main()
+{
+	const int MAX_AMOUNT = 8;
+	string password;
+	int firstMark, secondMark;
+
+	srand(time(NULL));
+
+	//Creating an 8-digit random character password.
+	for (int i = 0; i < MAX_AMOUNT; i++) {
+		password += rand() % ('z' - 'a') + 'a';
+	}
+
+	upperCase(password, firstMark);
+
+	digitIn(password, firstMark, secondMark);
+
+	specialSymbol(password, firstMark, secondMark);
+
+	cout << "Your random password is: " << password;
+}
+
+void upperCase(string& pass, int& firstMark) {
+	const char UPPER_MIN = 'A', UPPER_MAX = 'Z';
+	int position;
+
+	position = rand() % pass.length();
+
+	//Marking position to avoid rewriting of previous changes.
+	firstMark = position;
+
+	pass.at(position) = rand() % (UPPER_MAX - UPPER_MIN) + UPPER_MIN;
+}
+
+void digitIn(string& pass, int firstMark, int& secondMark) {
+	const char DIGIT_MIN = '0', DIGIT_MAX = '9';
+	bool digitCase = false;
+	int position;
+
+	do {
+		position = rand() % pass.length();
+
+		//Checking for a marked position
+		if (position != firstMark) {
+			pass.at(position) = rand() % (DIGIT_MAX - DIGIT_MIN) + DIGIT_MIN;
+			digitCase = true;
+
+			//Marking position to avoid rewriting of previous changes.
+			secondMark = position;
+		}
+	} while (digitCase == false);
+}
+
+void specialSymbol(string& pass, int firstMark, int secondMark) {
+	string specialSymb = "$*^&#_?";
+	bool specialCase = false;
+	int position, numOfSymb;
+
+	do {
+		position = rand() % pass.length();
+
+		//Checking for a marked positions
+		if (position != firstMark && position != secondMark) {
+			numOfSymb = rand() % specialSymb.length();
+			pass.at(position) = specialSymb.at(numOfSymb);
+			specialCase = true;
+		}
+	} while (specialCase == false);
+}
