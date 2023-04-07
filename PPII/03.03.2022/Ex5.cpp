@@ -1,7 +1,7 @@
 /*
-		Valid names: Write a program that reads a person’s name and checks if the name is
+		Valid names: Write a program that reads a personâ€™s name and checks if the name is
 	valid or not, printing an appropriate message in each case. A valid name can contain
-	letters (i.e. alphabetic characters), humphens (-), apostrophes (’) and spaces only.
+	letters (i.e. alphabetic characters), humphens (-), apostrophes (â€™) and spaces only.
 
 		Made by Ivan Kosiakov on 03/03/2022
 */
